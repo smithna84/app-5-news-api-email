@@ -1,7 +1,6 @@
-import smtplib
-import ssl
+import smtplib, ssl, certifi
 
-def send_email(message)
+def send_email(message):
     host = "smtp.gmail.com"
     port = 465
 
@@ -10,7 +9,7 @@ def send_email(message)
 
     receiver = "smithnathan2098@gmail.com"
 
-    context = ssl.create_default_context()
+    context = ssl.create_default_context(cafile=certifi.where())
 
     with smtplib.SMTP_SSL(host, port, context=context) as server:
         server.login(username, password)
